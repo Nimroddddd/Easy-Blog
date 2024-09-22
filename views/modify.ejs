@@ -1,0 +1,11 @@
+<%- include("partials/header.ejs") %>
+<div class="edit-container">
+  <h2>Edit Post</h2>
+  <form method="post" action="/edit/<%=data.id%>">
+    <input type="text" value="<%=data.title%>" name="title">
+    <textarea name="content" rows="10"><%=data.content%></textarea>
+    <input type="text" value="<%=data.author%>" name="author">
+    <button class="btn btn-light rounded-pill px-3" type="submit">Confirm Update</button>
+  </form>
+</div>
+<%- include("partials/footer.ejs") %>
