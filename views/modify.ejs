@@ -1,4 +1,5 @@
 <%- include("partials/header.ejs") %>
+<% if (locals.data) {%>
 <div class="edit-container">
   <h2>Edit Post</h2>
   <form method="post" action="/edit/<%=data.id%>">
@@ -8,4 +9,15 @@
     <button class="btn btn-light rounded-pill px-3" type="submit">Confirm Update</button>
   </form>
 </div>
+<%} else {%>
+<div class="edit-container">
+  <h2>Create New Post</h2>
+  <form method="post" action="/new">
+    <input type="text" value="" name="title" placeholder="Post Title">
+    <textarea name="content" rows="10" placeholder="Post Content"></textarea>
+    <input type="text" value="" name="author" placeholder="Post Author">
+    <button class="btn btn-light rounded-pill px-3" type="submit">Add new Post</button>
+  </form>
+</div>
+<%}%>
 <%- include("partials/footer.ejs") %>

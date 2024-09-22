@@ -38,16 +38,41 @@ app.get("/modify/:id", async (req, res) => {
 
 //process edit request
 app.post("/edit/:id", async (req, res) => {
-  console.log(req.body)
   try {
     const response = await axios.patch(api + '/edit/' + req.params.id, req.body);
-    console.log(response.data)
     res.redirect("/");
   } catch(error) {
     console.log(error.message);
   }
 })
 
+//handle new get request to create new post
+app.get("/create", (req, res) => {
+  res.render("modify.ejs");
+})
+
+//handle request to create new post
+app.post("/new", async (req, res) => {
+  try {
+    const response = await axios.patch(`${api}/new`, req.body);
+    console.log(response.data)
+    res.redirect("/")
+  } catch(error) {
+    console.log(error.message)
+  }
+
+})
+
+//handle delete post
+app.get("/delete/:id", async (req, res) => {
+  try{
+    const result = await axios.delete(`${api}/delete/${req.params.id}`)
+    res.redirect("/")
+  } catch(error) {
+    console.log(console.log)
+  }
+  
+})
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);

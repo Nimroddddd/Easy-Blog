@@ -5,6 +5,7 @@ import express from "express";
 //constant declarations
 const port = 4000
 const app = express()
+let currentLength = 3;
 
 //middleware
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -39,6 +40,28 @@ app.patch("/edit/:id", (req, res) => {
   postList[searchIndex] = newPost;
   res.json(postList[searchIndex]);
 
+})
+
+//create new post
+app.patch("/new", (req, res) => {
+  const newPost ={
+    id: currentLength + 1,
+    title: req.body.title,
+    content: req.body.content,
+    author: req.body.author,
+    date: new Date()
+  };
+  postList.push(newPost);
+  res.json(newPost);
+  currentLength += 1;
+})
+
+//delete a post
+app.delete("/delete/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const searchIndex = postList.findIndex((x) => x.id === id);
+  postList.splice(searchIndex, 1);
+  res.sendStatus(200);
 })
 
 
