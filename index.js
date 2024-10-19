@@ -1,10 +1,12 @@
 import bodyParser from 'body-parser';
 import express from 'express';
 import axios from 'axios';
+import env from "dotenv";
 
+env.config()
 const app = express();
 const port = 3000;
-const api = 'http://localhost:4000';
+const api = process.env.API_URL
 
 
 app.use(bodyParser.urlencoded({ extended: true }));
