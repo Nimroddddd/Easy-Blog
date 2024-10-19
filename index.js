@@ -18,7 +18,7 @@ app.get("/", async (req, res) => {
     res.render("index.ejs", {data: result});
   } catch(error) {
     console.log(error.message);
-    res.redirect("/");
+    // res.redirect("/");
   }
 })
 
