@@ -29,7 +29,7 @@ db.connect()
 //get homepage
 app.get("/posts", async (req, res) => {
   try {
-    const response = await db.query("select * from posts");
+    const response = await db.query("select * from posts order by id asc");
     const result = response.rows
     res.json(result)
   } catch (err) {
